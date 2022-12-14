@@ -32,3 +32,11 @@ public class VendingMachineCLI {
 		cli.run();
 	}
 }
+
+/* group code before adding to CLI
+
+
+
+
+
+ */
