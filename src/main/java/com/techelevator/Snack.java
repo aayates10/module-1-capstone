@@ -4,11 +4,11 @@ public class Snack {
 
     private String name;
     private double price;
-    private String slotLocation;
+    private String slotID;
     private String snackType;
 
-    public Snack(String slotLocation, String name, double price, String snackType) {
-        this.slotLocation = slotLocation;
+    public Snack(String slotID, String name, double price, String snackType) {
+        this.slotID = slotID;
         this.name = name;
         this.price = price;
         this.snackType = snackType;
@@ -38,12 +38,12 @@ public class Snack {
         this.price = price;
     }
 
-    public String getSlotLocation() {
-        return slotLocation;
+    public String getSlotID() {
+        return slotID;
     }
 
-    public void setSlotLocation(String slotLocation) {
-        this.slotLocation = slotLocation;
+    public void setSlot(String slotID) {
+        this.slotID = slotID;
     }
 
     public String getSnackType() {
