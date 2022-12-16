@@ -3,8 +3,8 @@ package com.techelevator;
 public class VendingMachine {
 
     // attributes
-    private boolean hasSuffifientFunds = false;
-    private boolean isInStock = false;
+    private boolean hasSufficientFunds;
+    private boolean isInStock;
 
     /*
     methods
