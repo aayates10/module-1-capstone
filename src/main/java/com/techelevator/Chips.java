@@ -1,6 +1,7 @@
 package com.techelevator;
 
-public class Chips extends Snack {
+public class
+Chips extends Snack {
 
     private int chipsQty = 5;
 
