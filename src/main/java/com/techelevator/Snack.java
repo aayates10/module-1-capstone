@@ -6,6 +6,7 @@ public class Snack {
     private double price;
     private String slotID;
     private String snackType;
+    private int qty = 5;
 
     public Snack(String slotID, String name, double price, String snackType) {
         this.slotID = slotID;
@@ -20,6 +21,24 @@ public class Snack {
     }
 
     public Snack() {
+    }
+
+    public String getMessage() {
+        String message = "";
+        if (slotID.contains("A")) {
+            message = "Crunch Crunch, Yum!";
+        } else if (slotID.contains("B")) {
+            message = "Munch Munch, Yum!";
+        } else if (slotID.contains("C")) {
+            message = "Glug Glug, Yum!";
+        } else {
+            message = "Chew Chew, Yum!";
+        }
+        return message;
+    }
+
+    public void updateQty() {
+        qty -= 1;
     }
 
     public String getName() {
@@ -42,7 +61,7 @@ public class Snack {
         return slotID;
     }
 
-    public void setSlot(String slotID) {
+    public void setSlotID(String slotID) {
         this.slotID = slotID;
     }
 
@@ -52,6 +71,14 @@ public class Snack {
 
     public void setSnackType(String snackType) {
         this.snackType = snackType;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
 }
