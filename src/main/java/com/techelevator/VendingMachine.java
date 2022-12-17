@@ -11,6 +11,7 @@ public class VendingMachine {
     checkInventory()
     // reads file, restocks
     TODO Aaron, try something like this in Inventory!
+
     String[] lineArray = line.split("\\|");
     String setSlotID = lineArray[0];
     String setName = lineArray[1];
@@ -34,18 +35,6 @@ public class VendingMachine {
         sout("Insufficient funds");
 
     dispense()
-
-    // print message
-    String message = "";
-    if (getSnackType.equalsIgnoreCase("chips") {
-        message = "Crunch Crunch, Yum!";
-    } else if (getSnackType.equalsIgnoreCase("candy") {
-        message = "Munch Munch, Yum!";
-    } else if (getSnackType.equalsIgnoreCase("drink") {
-        message = "Glug Glug, Yum!";
-    } else if (getSnackType.equalsIgnoreCase("gum") {
-        message = "Chew Chew, Yum!";
-    } return message;
 
     giveChange()
 

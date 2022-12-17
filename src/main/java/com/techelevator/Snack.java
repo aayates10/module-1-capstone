@@ -15,12 +15,10 @@ public class Snack {
         this.snackType = snackType;
     }
 
-    public Snack(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public Snack() {
+    @Override
+    public String toString() {
+        String priceFormat = String.format("%.2f", price);
+        return slotID + " | " + name + " | " + priceFormat + " | " + qty;
     }
 
     public String getMessage() {

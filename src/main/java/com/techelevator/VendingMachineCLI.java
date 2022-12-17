@@ -8,9 +8,16 @@ public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-	private static final String MAIN_MENU_Exit = "Exit";
+	private static final String MAIN_MENU_EXIT = "Exit";
+	private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS,
+					MAIN_MENU_OPTION_PURCHASE,MAIN_MENU_EXIT };
 
-	private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE,MAIN_MENU_Exit };
+	// added purchase menu options
+	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
+	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
+	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
+	private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_FEED_MONEY,
+					PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION};
 
 	private Menu menu;
 
@@ -21,6 +28,7 @@ public class VendingMachineCLI {
 
 	public void run() {
 		inventory.getVendingFileData();
+		// add load or restock method
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -29,6 +37,9 @@ public class VendingMachineCLI {
 				// display vending machine items (Currently returning gibberish)
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
+			} else if (choice.equals(MAIN_MENU_EXIT)) {
+				System.out.println("Thank you, please come again.");
+				System.exit(0);
 			}
 		}
 	}
@@ -39,11 +50,3 @@ public class VendingMachineCLI {
 		cli.run();
 	}
 }
-
-/* group code before adding to CLI
-
-
-
-
-
- */
