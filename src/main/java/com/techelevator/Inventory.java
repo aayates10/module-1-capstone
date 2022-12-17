@@ -13,7 +13,7 @@ public class Inventory {
     private List<String[]> vendingFileData;
 
     public Inventory(){
-        this.fileLocation = "Capstone 1/module-1-capstone/vendingmachine.csv";
+        this.fileLocation = "vendingmachine.csv";
         this.vendingFile = new File(fileLocation);
         this.vendingFileData = new ArrayList<>();
 
