@@ -21,7 +21,7 @@ public class VMLog {
                    01/01/2019 12:01:35 PM GIVE CHANGE: $6.75 $0.00
      */
 
-    public static void logTransactions(String message) throws FileNotFoundException {
+    public static void logTransactions(String message) {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("MM-dd-yyy hh:mm:ss");
         String timeStamp = dateTime.format(dateTimeFormat);
@@ -30,6 +30,8 @@ public class VMLog {
 
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(logFile, true))) {
             writer.println(timeStamp + " " + message);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException();
         }
     }
 
