@@ -28,7 +28,7 @@ public class VendingMachineCLI {
 	private Inventory inventory = new Inventory();
 
 	public void run() {
-		inventory.InvetoryStock();
+		inventory.InventoryStock();
 		// add load or restock method
 
 		while (true) {
