@@ -21,21 +21,27 @@ public class VendingMachineCLI {
 
 	private Menu menu;
 
-	public VendingMachineCLI(Menu menu) {
+	public VendingMachineCLI(Menu menu, Inventory inventory) {
+		this.inventory = inventory;
 		this.menu = menu;
 	}
 	private Inventory inventory = new Inventory();
 
 	public void run() {
-		inventory.getVendingFileData();
+		inventory.InvetoryStock();
 		// add load or restock method
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				System.out.print(inventory.getVendingFileData());
+				inventory.displayInventory();
+				System.out.println(System.lineSeparator());
 				// display vending machine items (Currently returning gibberish)
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+				boolean purchase = true;
+				while (purchase) {
+
+				}
 				// do purchase
 			} else if (choice.equals(MAIN_MENU_EXIT)) {
 				System.out.println("Thank you, please come again.");
@@ -46,7 +52,8 @@ public class VendingMachineCLI {
 
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);
-		VendingMachineCLI cli = new VendingMachineCLI(menu);
+		Inventory inventory = new Inventory();
+		VendingMachineCLI cli = new VendingMachineCLI(menu, inventory);
 		cli.run();
 	}
 }

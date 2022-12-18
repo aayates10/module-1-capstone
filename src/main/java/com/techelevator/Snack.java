@@ -6,13 +6,16 @@ public class Snack {
     private double price;
     private String slotID;
     private String snackType;
-    private int qty = 5;
+    private int qty;
 
     public Snack(String slotID, String name, double price, String snackType) {
         this.slotID = slotID;
         this.name = name;
         this.price = price;
         this.snackType = snackType;
+
+
+
     }
 
     @Override
