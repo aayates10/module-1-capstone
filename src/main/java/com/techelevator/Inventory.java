@@ -26,7 +26,7 @@ public class Inventory {
     public Inventory() {
     }
 
-    public String InvetoryStock() {
+    public String InventoryStock() {
 
         try {
 
