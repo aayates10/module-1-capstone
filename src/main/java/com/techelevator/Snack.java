@@ -14,9 +14,10 @@ public class Snack {
         this.name = name;
         this.price = price;
         this.snackType = snackType;
-
-
-
+    }
+    public int PriceInPennies(){
+        // Convert price of snacks to pennies, so all math can be done as ints for the sake of precision.
+        return (int ) (price * 100);
     }
 
     @Override

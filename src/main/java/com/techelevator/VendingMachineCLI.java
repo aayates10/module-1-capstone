@@ -40,11 +40,14 @@ public class VendingMachineCLI {
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				while (true) {
 					// displays purchase menu options with 0 starting balance
-					System.out.println("Current Money Provided: $0.00");
 					String nextChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					if (nextChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
+						Transaction.feedMoney();
 						// feed money method, updates balance, logs
 						VMLog.logTransactions("FEED MONEY: $");
+					}
+					else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)){
+						Transaction.coinsReturned();
 					}
 				}
 			} else if (choice.equals(MAIN_MENU_EXIT)) {
