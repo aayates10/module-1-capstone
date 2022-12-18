@@ -39,7 +39,7 @@ public class Inventory {
                 vendingFileData.add(stringsplit[0]);
             }
         } catch (FileNotFoundException e) {
-
+            System.out.println("File not found." + e.getMessage());
         }
 
         return "Inventory Stock.";
