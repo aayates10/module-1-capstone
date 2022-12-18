@@ -1,35 +1,31 @@
 package com.techelevator;
 
+import java.awt.*;
 import java.util.Arrays;
 
 public class Transaction {
-    private static final double PENNY = .01;
-    private static final double NICKEL = .05;
-    private static final double DIME = .10;
-    private static final double QUARTER = .25;
+    private static final double NICKEL = 0.05;
+    private static final double DIME = 0.10;
+    private static final double QUARTER = 0.25;
 
-    public static String coinsReturned() {
-        double changeNeeded = 1;
+    public static String coinsReturned(double changeNeeded) {
         // changeNeeded needs to be a provided variable.
         double changeGiven = 0;
         int quartersGiven = 0;
-        int nickelsGiven = 0;
         int dimesGiven = 0;
-        int penniesGiven = 0;
-        for (double i = changeNeeded; i != changeGiven;) {
-            if (changeNeeded > QUARTER) {changeGiven = changeGiven + QUARTER;
-            changeNeeded = changeNeeded - QUARTER;
-            quartersGiven++;}
-            if (changeNeeded > DIME) {changeGiven = changeGiven + DIME;
-            changeNeeded = changeNeeded - DIME;
-            dimesGiven++;}
-            if (changeNeeded > NICKEL) {changeGiven = changeGiven + NICKEL;
-            changeNeeded = changeNeeded - NICKEL;
-            nickelsGiven++;}
-            else if (changeNeeded > PENNY) {changeGiven = changeGiven + PENNY;
-            changeNeeded = changeNeeded - PENNY;
-            penniesGiven++;}
+        int nickelsGiven = 0;
+        while ((changeNeeded - changeGiven) >= QUARTER) {
+            changeGiven = changeGiven + QUARTER;
+            quartersGiven++;
         }
-        return "Dispensing change in the form of " + quartersGiven + " quarters, " + dimesGiven + " dimes, " + nickelsGiven + " nickels, and " + penniesGiven + " pennies.";
+        while ((changeNeeded - changeGiven) >= DIME) {
+            changeGiven = changeGiven + DIME;
+            dimesGiven++;
+        }
+       while ((changeNeeded - changeGiven) >= NICKEL) {
+            changeGiven = changeGiven + NICKEL;
+            nickelsGiven++;
+        }
+        return "Dispensing change in the form of " + quartersGiven + " quarters, " + dimesGiven + " dimes, and " + nickelsGiven + " nickels";
     }
 }

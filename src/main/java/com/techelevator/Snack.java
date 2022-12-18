@@ -6,7 +6,8 @@ public class Snack {
     private double price;
     private String slotID;
     private String snackType;
-    private int qty;
+    private int qty = 5;
+    // change quantity to be a snack-derived variable
 
     public Snack(String slotID, String name, double price, String snackType) {
         this.slotID = slotID;

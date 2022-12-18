@@ -46,12 +46,10 @@ public class Inventory {
     }
 
     public String displayInventory() {
-        for (int i = 0; i < vendingFileData.size(); i++) {
-            System.out.println(getSnacks().get(getVendingFileData().get(i)).getSlotID()+ "|" +
-                    getSnacks().get(getVendingFileData().get(i)).getName() + "|" +
-                    getSnacks().get(getVendingFileData().get(i)).getPrice());
-
+        for (Snack i : snacks.values()){
+            System.out.println(i.toString());
         }
+        // look into Linked Hashmap, or Tree Map to order results
         return "\r\n Back to main menu.";
     }
 }
