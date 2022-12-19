@@ -19,7 +19,8 @@ public class Inventory {
         return snacks;
     }
 
-    private static Map<String, Snack> snacks = new HashMap<>();
+   // private static Map<String, Snack> snacks = new HashMap<>();
+    private static LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
 
 
 
