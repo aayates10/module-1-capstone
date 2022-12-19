@@ -1,7 +1,7 @@
 package com.techelevator;
 
 public class Snack {
-
+    // Properties of a Snack
     private String name;
     private double price;
     private String slotID;
@@ -15,6 +15,10 @@ public class Snack {
         this.price = price;
         this.snackType = snackType;
     }
+
+    public Snack(String value, String value1, double price) {
+    }
+
     public int PriceInPennies(){
         // Convert price of snacks to pennies, so all math can be done as ints for the sake of precision.
         return (int ) (price * 100);
@@ -84,4 +88,5 @@ public class Snack {
         this.qty = qty;
     }
 
+    public int dispense() { return qty - 1; }
 }
