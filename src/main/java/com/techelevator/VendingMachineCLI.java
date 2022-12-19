@@ -20,12 +20,15 @@ public class VendingMachineCLI {
 					PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION};
 
 	private Menu menu;
+	private Transaction transaction;
 
 	public VendingMachineCLI(Menu menu, Inventory inventory) {
 		this.inventory = inventory;
 		this.menu = menu;
+
 	}
 	private Inventory inventory = new Inventory();
+
 
 	public void run() {
 		inventory.InventoryStock();
@@ -41,10 +44,14 @@ public class VendingMachineCLI {
 				while (true) {
 					// displays purchase menu options with 0 starting balance
 					String nextChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+
 					if (nextChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
 						Transaction.feedMoney();
 						// feed money method, updates balance, logs
 						VMLog.logTransactions("FEED MONEY: $");
+					}
+					if(nextChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)){
+						inventory.displayInventory();
 					}
 					else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)){
 						Transaction.coinsReturned();
