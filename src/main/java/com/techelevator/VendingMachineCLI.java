@@ -4,6 +4,7 @@ import com.techelevator.view.Menu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -29,12 +30,19 @@ public class VendingMachineCLI {
 	public VendingMachineCLI(Menu menu, Inventory inventory) {
 		this.inventory = inventory;
 		this.menu = menu;
-
 	}
-	private Inventory inventory = new Inventory();
+	private Inventory inventory;
+	private LinkedHashMap<String, Snack>products = inventory.InventoryStock();
+	public String displayInventory() {
+		for (Snack i : products.values()){
+			System.out.println(i.toString());
+		}
+		// look into Linked Hashmap, or Tree Map to order results
+		return "\r\n Back to main menu.";
+	}
 
 
-	public void run() throws FileNotFoundException {
+	public void run() {
 		inventory.InventoryStock();
 		// add load or restock method
 
@@ -42,7 +50,7 @@ public class VendingMachineCLI {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			String nextChoice = null;
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				inventory.displayInventory();
+				displayInventory();
 				System.out.println(System.lineSeparator());
 				// display vending machine items (Currently returning gibberish)
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
@@ -57,44 +65,25 @@ public class VendingMachineCLI {
 						VMLog.logTransactions("FEED MONEY: $");
 					}
 					if (nextChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
-						inventory.displayInventory();
+						displayInventory();
 
-						// Creates a Scanner to read from the "vendingmachine.csv" file
-						scanner = new Scanner(new File("vendingmachine.csv"));
-
-						// Reads the file line by line
-						while (scanner.hasNextLine()) {
-							// Reads the current line
-							String line = scanner.nextLine();
-
-							// Splits the line by the ',' character
-							String[] values = line.split(",");
+						//user input scanner
+						Scanner userInput = new Scanner(System.in);
+						System.out.print("Enter a string: ");
+						String str = userInput.next();
+						if (products.containsKey(str)) {
+							products.get(str).getMessage();
+							products.get(str).updateQty();
+						}
 
 							// Extracts the data for the snack from the values array
-							String name = values[0];
-							String type = values[1];
-							double price = Double.parseDouble(values[2]);
 
-							// If the product code doesn't exist, inform the customer and return to the Purchase menu
-							if (Snack == null) {
-								System.out.println("Invalid product code.");
-								return;
-							}
 
-							// If the product is sold out, inform the customer and return to the Purchase menu
-							if (Snack.getQty() == 0) {
-								System.out.println("Product is sold out.");
-								return;
-							}
-
-							// Dispense the product to the customer
-							Snack.dispense();
-							System.out.println(Snack.getMessage());
 						}
 					}
-				}
+
 				// Closes the Scanner object
-				scanner.close();
+
 
 
 			} else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {

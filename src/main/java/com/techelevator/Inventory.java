@@ -10,25 +10,21 @@ public class Inventory {
     public static List<String> getVendingFileData() {
         return vendingFileData;
     }
-
     private final File vendingFile = new File("vendingmachine.csv");
-
     private static List<String> vendingFileData = new ArrayList<>();
 
-    public static Map<String, Snack> getSnacks() {
-        return snacks;
-    }
+
 
    // private static Map<String, Snack> snacks = new HashMap<>();
-    private static LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
+
 
 
 
     public Inventory() {
     }
 
-    public String InventoryStock() {
-
+    public LinkedHashMap<String, Snack> InventoryStock() {
+        LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
         try {
 
             Scanner InventoryStock = new Scanner(vendingFile);
@@ -43,14 +39,14 @@ public class Inventory {
             System.out.println("File not found." + e.getMessage());
         }
 
-        return "Inventory Stock.";
+        return snacks;
     }
 
-    public String displayInventory() {
-        for (Snack i : snacks.values()){
-            System.out.println(i.toString());
-        }
-        // look into Linked Hashmap, or Tree Map to order results
-        return "\r\n Back to main menu.";
-    }
+//    public String displayInventory() {
+//        for (Snack i : snacks.values()){
+//            System.out.println(i.toString());
+//        }
+//        // look into Linked Hashmap, or Tree Map to order results
+//        return "\r\n Back to main menu.";
+//    }
 }
