@@ -32,6 +32,8 @@ public class Transaction {
         doubleValue = (balance + fedMoney) / 100;
         //balance stored as pennies
         System.out.println("Your new balance is " + "$"+String.format("%.2f", doubleValue) + " dollars.");
+        //^Conversion of doubleValue to 2 decimal places//
+
     }
 
 }
