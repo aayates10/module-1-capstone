@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Transaction {
@@ -19,12 +20,12 @@ public class Transaction {
 
     public String transaction(){
 
-        Scanner userinput = new Scanner(System.in);
-        System.out.println("Please enter key of the item you'd like:");
-        String key = userinput.nextLine();
-        System.out.println("You bought: " + key.toUpperCase() + " " + getMessage().toString());
+        Scanner userSelect = new Scanner(System.in);
+        System.out.print("Please enter key of the item you'd like: ");
+        String productKey = userSelect.nextLine();
+        System.out.println("You selected: " + productKey.toUpperCase(Locale.ROOT));
 
-        this.tempkey = key.toUpperCase();
+        this.tempkey = productKey.toUpperCase(Locale.ROOT);
         return tempkey;
     }
     public String getMessage() {

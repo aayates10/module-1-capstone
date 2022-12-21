@@ -62,35 +62,36 @@ public class VendingMachineCLI {
 					if (nextChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
 						purchaseMenu.feedMoney();
 						// feed money method, updates balance, logs
-						VMLog.logTransactions("FEED MONEY: $");
+						VMLog.logTransactions("FEED MONEY: $" +purchaseMenu.getNonpreBalance() +" $"+ purchaseMenu.getPrevBalance());
+
 					} else if (nextChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
+						//display products
 						inventory.displayInventory();
+						//allow input of which 'key' to buy
 						transaction.transaction();
-
-
 
 						if (!inventory.getSnacks().containsKey(transaction.getTempkey())) {
 
 							//catches if key does not exist and returns to menu
-							System.out.println("That item does not exist, returning to purchase menu: ");
+							System.out.println("Item UNAVAILABLE, returning to purchase menu: ");
 						} else if((inventory.getSnacks().get(transaction.getTempkey()).getQty() == 0)){
 							//catches if that item is sold out and informs customer, returning to menu
-							System.out.println("\r\nSorry that item is unavailable, returning to purchase menu: ");
+							System.out.println("\r\n******* SOLD OUT *******: ");
 						}else{
 							//dispenses item, adjusts inventory and balances, then logs
 							System.out.println("\r\nItem purchased, dispensing " + inventory.getSnacks().get(transaction.getTempkey()).getName() + ": " + inventory.getSnacks().get(transaction.getTempkey()).getMessage() + System.lineSeparator());
 							purchaseMenu.removeBalance(inventory.getSnacks().get(transaction.getTempkey()).getPrice());
 							inventory.getSnacks().get(transaction.getTempkey()).getInventoryTakeAway(true);
-							VMLog.logTransactions(inventory.getSnacks().get(transaction.getTempkey()).getName() + " " + inventory.getSnacks().get(transaction.getTempkey()).getSnackType() + " $" + purchaseMenu.getPrevBalance() + " $" + purchaseMenu.getBalance());
+							VMLog.logTransactions(inventory.getSnacks().get(transaction.getTempkey()).getName() + " " + inventory.getSnacks().get(transaction.getTempkey()).getSnackType() + " $" + purchaseMenu.getNonpreBalance() + " $" + purchaseMenu.getPrevBalance());
 						}
 						} else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 							purchaseMenu.returnChange();
 							purchaseMenu.feedMoney();
 						} else if (choice.equals(MAIN_MENU_EXIT)) {
-							System.out.println("Thank you, please come again.");
+							System.out.println("Thanks, ENJOY.");
 							System.exit(0);
 					} else if (choice.equals(MAIN_MENU_EXIT)) {
-						System.out.println("Thank you, please come again.");
+						System.out.println("Thanks, ENJOY.");
 					}
 				}
 
