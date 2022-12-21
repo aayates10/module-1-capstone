@@ -1,22 +1,23 @@
 package com.techelevator;
 
+
+
 public class Snack {
     // Properties of a Snack
     private String name;
     private double price;
     private String slotID;
     private String snackType;
-    private int qty = 5;
+    private int qty;
     // change quantity to be a snack-derived variable
 
+
+    //constructor
     public Snack(String slotID, String name, double price, String snackType) {
         this.slotID = slotID;
         this.name = name;
         this.price = price;
         this.snackType = snackType;
-    }
-
-    public Snack(String value, String value1, double price) {
     }
 
     public int PriceInPennies(){
@@ -43,6 +44,26 @@ public class Snack {
         }
         return message;
     }
+
+    public int InventoryTakeAway(boolean available ){
+        if (available == true && qty > 0){
+             this.qty = getQty()-1;
+        }
+        return this.qty;
+    }
+
+    public String soldOut() {
+        int shelfSnack = getQty();
+        String shelvedInventory;
+        if (shelfSnack == 0) {
+            shelvedInventory = "SOLD OUT";
+        } else {
+            shelvedInventory = "AVAILIBLE";
+        }
+        return shelvedInventory;
+    }
+
+
 
     public void updateQty() {
         qty -= 1;

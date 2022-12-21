@@ -7,24 +7,16 @@ import java.util.*;
 
 public class Inventory {
 
-    public static List<String> getVendingFileData() {
-        return vendingFileData;
-    }
-    private final File vendingFile = new File("vendingmachine.csv");
+
+
     private static List<String> vendingFileData = new ArrayList<>();
 
+    // private static Map<String, Snack> snacks = new HashMap<>();
+    private static LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
+    private final File vendingFile = new File("vendingmachine.csv");
 
+    public String InventoryStock() {
 
-   // private static Map<String, Snack> snacks = new HashMap<>();
-
-
-
-
-    public Inventory() {
-    }
-
-    public LinkedHashMap<String, Snack> InventoryStock() {
-        LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
         try {
 
             Scanner InventoryStock = new Scanner(vendingFile);
@@ -39,14 +31,22 @@ public class Inventory {
             System.out.println("File not found." + e.getMessage());
         }
 
-        return snacks;
+        return "Inventory Stock.";
     }
 
-//    public String displayInventory() {
-//        for (Snack i : snacks.values()){
-//            System.out.println(i.toString());
-//        }
-//        // look into Linked Hashmap, or Tree Map to order results
-//        return "\r\n Back to main menu.";
-//    }
+    public String displayInventory() {
+        //advaced for loop
+        for (Snack i : snacks.values()) {
+            System.out.println(i.toString());
+        }
+        // look into Linked Hashmap, or Tree Map to order results
+        return "\r\n Back to main menu.";
+    }
+
+    public static List<String> getVendingFileData() {
+        return vendingFileData;
+    }
+    public static LinkedHashMap<String, Snack> getSnacks() {
+        return snacks;
+    }
 }
