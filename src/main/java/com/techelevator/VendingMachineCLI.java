@@ -4,6 +4,10 @@ import com.techelevator.view.Menu;
 import com.techelevator.view.PurchaseMenu;
 
 public class VendingMachineCLI {
+	/*has a main method that creates instances of the Menu and
+	PurchaseMenu classes, as well as the Transaction and Inventory
+	classes. It also creates an instance of itself,
+	VendingMachineCLI.*/
 	public static void main (String[]args){
 		Menu menu = new Menu(System.in, System.out);
 		PurchaseMenu purchaseMenu = new PurchaseMenu(System.in, System.out);
@@ -19,16 +23,16 @@ public class VendingMachineCLI {
 	private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS,
 			MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_EXIT};
 
-	// added purchase menu options
+	//added purchase menu options
 	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
 	private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_FEED_MONEY,
 			PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION};
 
+	//CLI Variables
 	private Menu menu;
 	private PurchaseMenu purchaseMenu;
-
 	private Transaction transaction;
 
 
@@ -56,14 +60,20 @@ public class VendingMachineCLI {
 				// display vending machine items (Currently returning gibberish)
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				while (true) {
-					// displays purchase menu options with 0 starting balance
 					String nextChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
+					/*If the user selects the "Feed Money" option,
+					the program updates the balance and logs the
+					transaction.*/
 					if (nextChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
 						purchaseMenu.feedMoney();
 						// feed money method, updates balance, logs
 						VMLog.logTransactions("FEED MONEY: $" +purchaseMenu.getNonpreBalance() +" $"+ purchaseMenu.getPrevBalance());
 
+						/*f the user selects the "Select Product" option, the program
+						gets the user's input for which product they want to purchase
+						and dispenses the product if it is available.
+						 */
 					} else if (nextChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						//display products
 						inventory.displayInventory();
@@ -84,10 +94,17 @@ public class VendingMachineCLI {
 							inventory.getSnacks().get(transaction.getTempkey()).getInventoryTakeAway(true);
 							VMLog.logTransactions(inventory.getSnacks().get(transaction.getTempkey()).getName() + " " + inventory.getSnacks().get(transaction.getTempkey()).getSnackType() + " $" + purchaseMenu.getNonpreBalance() + " $" + purchaseMenu.getPrevBalance());
 						}
+						/*If the user selects the "Finish Transaction"
+						option, the program returns the user's
+						remaining balance and logs the transaction.
+						 */
 						} else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 							purchaseMenu.returnChange();
 							purchaseMenu.feedMoney();
-						} else if (choice.equals(MAIN_MENU_EXIT)) {
+						/*If the user selects the "Exit" option
+						from the main menu, the program terminates.
+						 */
+					} else if (choice.equals(MAIN_MENU_EXIT)) {
 							System.out.println("Thanks, ENJOY.");
 							System.exit(0);
 					} else if (choice.equals(MAIN_MENU_EXIT)) {

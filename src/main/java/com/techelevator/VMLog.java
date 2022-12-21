@@ -9,18 +9,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class VMLog {
-
-    /*
-    TODO: code to log transactions
-     - first $ amount deposited, spent, or given change; second is new balance
-
-                   01/01/2019 12:00:00 PM FEED MONEY: $5.00 $5.00
-                   01/01/2019 12:00:15 PM FEED MONEY: $5.00 $10.00
-                   01/01/2019 12:00:20 PM Crunchie B4 $1.75 $8.25
-                   01/01/2019 12:01:25 PM Cowtales B2 $1.50 $6.75
-                   01/01/2019 12:01:35 PM GIVE CHANGE: $6.75 $0.00
-     */
-
+    /*gets the current date and time using the LocalDateTime class,
+    formats it using the DateTimeFormatter class, and stores it in
+    a timeStamp string.It then opens the Log.txt file and writes
+    the timeStamp and message to it using a PrintWriter. If the file
+    cannot be found, a FileNotFoundException is thrown.*/
     public static void logTransactions(String message) {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("MM-dd-yyy hh:mm:ss");

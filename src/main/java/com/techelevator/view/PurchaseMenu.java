@@ -1,28 +1,37 @@
 package com.techelevator.view;
-
-import com.techelevator.Snack;
-import com.techelevator.Transaction;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class PurchaseMenu extends Menu {
+    //used to read and output information to the user.
     private PrintWriter out;
     private Scanner in;
+    //stores the balance of the user before they made a purchase
     private double prevBalance;
+    //stores the balance of the user before they inserted any money
     private double nonpreBalance;
-
-
-
+    //stores the current balance of the user.
     private double balance;
+    /*The PurchaseMenu class has a constructor that takes in an
+    InputStream and an OutputStream as arguments. It calls the
+    constructor of the parent class (Menu) and then creates
+    the Scanner and PrintWriter objects using the input and output
+    streams, respectively.
 
+    The PurchaseMenu class has several methods, including
+    getChoiceFromOptions, getChoiceFromUserInput, and
+    displayMenuOptions, which are identical to the methods with the
+    same names in the parent class. It also has a feedMoney method
+    which
+     */
     public PurchaseMenu(InputStream input, OutputStream output) {
         super(input,output);
         this.out = new PrintWriter(output);
         this.in = new Scanner(input);
     }
+
     public Object getChoiceFromOptions(Object[] options) {
         Object choice = null;
         while (choice == null) {
@@ -57,6 +66,10 @@ public class PurchaseMenu extends Menu {
         out.print(System.lineSeparator() + "Please choose an option >>> ");
         out.flush();
     }
+    /*prompts the user to insert a whole dollar amount, adds
+    that amount to the user's balance, and returns the amount inserted.
+     */
+
     public double feedMoney(){
         System.out.println("\r\nInsert whole dollar amounts. Does not Accept $50 or $100 bills.");
         Scanner userFeed = new Scanner(System.in);
@@ -67,6 +80,10 @@ public class PurchaseMenu extends Menu {
         return Double.parseDouble(feed);
 
     }
+    /*calculates the number of quarters, dimes, and nickels needed
+    to return the user's balance to them and displays the amounts to
+    the user. It also resets the user's balance to 0.
+     */
     public double returnChange() {
         //statement to calculate quarters, nickles and dimes
         //define coin amounts
@@ -94,7 +111,12 @@ public class PurchaseMenu extends Menu {
         return this.balance;
     }
     
-
+    /* adds the specified amount to the user's balance
+    if it is a valid whole dollar amount.
+    It also has several other methods which allow the user to make
+    a purchase, view their current balance, and view their
+    transaction history.
+     */
     public double feedBalance(int feed){
         //only want to intake amounts of 1, 2, 5, 10, 20
         if(feed == 1 || feed == 2 || feed == 5 || feed == 10||feed == 20){

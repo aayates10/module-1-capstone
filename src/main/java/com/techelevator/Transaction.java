@@ -6,18 +6,20 @@ import java.util.Scanner;
 public class Transaction {
 
     String keys;
-
+    /*stores the slot where the snack is located*/
     private String slotID;
     String tempkey;
-
+    /*stores the user's selected product key.*/
     public Transaction(){}
 
 
-
+    /*sets the slotID field*/
     public void Snack(String slotID, String name, double price, String snackType) {
         this.slotID = slotID;
     }
-
+    /*prompts the user to enter a product key
+    and stores it in the tempkey field. It returns the tempkey field.
+     */
     public String transaction(){
 
         Scanner userSelect = new Scanner(System.in);
@@ -28,6 +30,10 @@ public class Transaction {
         this.tempkey = productKey.toUpperCase(Locale.ROOT);
         return tempkey;
     }
+    /*has a getMessage method which returns a
+    message based on the type of snack associated
+    with the slotID field.
+     */
     public String getMessage() {
         String message = "";
         if (slotID.contains("A")) {
@@ -53,9 +59,3 @@ public class Transaction {
         return slotID;
     }
 }
-
-
-
-
-
-

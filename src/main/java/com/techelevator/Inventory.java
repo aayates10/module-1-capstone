@@ -6,20 +6,22 @@ import java.util.*;
 
 
 public class Inventory {
-
-
-
+    /*stores the data from a file containing information about the
+    snacks*/
     private static List<String> vendingFileData = new ArrayList<>();
-
-    // private static Map<String, Snack> snacks = new HashMap<>();
+    /*maps the snack's slot ID to a Snack
+    object containing information about the snack
+     */
     private static LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
+    /*represents the file containing the snack data.*/
     private final File vendingFile = new File("vendingmachine.csv");
 
-
+    /*reads the data from the vendingFile and stores it in the snacks
+    map and the vendingFileData list. It catches a
+    FileNotFoundException if the file cannot be found.
+     */
     public String InventoryStock() {
-
         try {
-
             Scanner InventoryStock = new Scanner(vendingFile);
             while (InventoryStock.hasNextLine()) {
                 String inventoryLine = InventoryStock.nextLine();
@@ -34,7 +36,9 @@ public class Inventory {
 
         return "Inventory Stock.";
     }
-
+    /*iterates through the snacks map and prints the information
+    about each snack to the console.
+     */
     public String displayInventory() {
         //advaced for loop
         for (Snack i : snacks.values()) {
@@ -43,8 +47,7 @@ public class Inventory {
         // look into Linked Hashmap, or Tree Map to order results
         return "\r\n Back to main menu.";
     }
-
-
+    /*return the vendingFileData list and the snacks map, respectively.*/
     public static List<String> getVendingFileData() {
         return vendingFileData;
     }
