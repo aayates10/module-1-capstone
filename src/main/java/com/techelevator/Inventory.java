@@ -15,6 +15,7 @@ public class Inventory {
     private static LinkedHashMap<String, Snack> snacks = new LinkedHashMap<>(); // snacks now display in order
     private final File vendingFile = new File("vendingmachine.csv");
 
+
     public String InventoryStock() {
 
         try {
@@ -42,6 +43,7 @@ public class Inventory {
         // look into Linked Hashmap, or Tree Map to order results
         return "\r\n Back to main menu.";
     }
+
 
     public static List<String> getVendingFileData() {
         return vendingFileData;

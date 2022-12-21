@@ -4,7 +4,14 @@ import com.techelevator.view.Menu;
 import com.techelevator.view.PurchaseMenu;
 
 public class VendingMachineCLI {
-
+	public static void main (String[]args){
+		Menu menu = new Menu(System.in, System.out);
+		PurchaseMenu purchaseMenu = new PurchaseMenu(System.in, System.out);
+		Transaction transaction = new Transaction();
+		Inventory inventory = new Inventory();
+		VendingMachineCLI cli = new VendingMachineCLI(menu, inventory, purchaseMenu, transaction);
+		cli.run();
+	}
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -56,38 +63,38 @@ public class VendingMachineCLI {
 						purchaseMenu.feedMoney();
 						// feed money method, updates balance, logs
 						VMLog.logTransactions("FEED MONEY: $");
-					}
-					else if (nextChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
+					} else if (nextChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						inventory.displayInventory();
 						transaction.transaction();
+
+
 
 						if (!inventory.getSnacks().containsKey(transaction.getTempkey())) {
 
 							//catches if key does not exist and returns to menu
 							System.out.println("That item does not exist, returning to purchase menu: ");
-
-						}else IF ((nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
+						} else if((inventory.getSnacks().get(transaction.getTempkey()).getQty() == 0)){
+							//catches if that item is sold out and informs customer, returning to menu
+							System.out.println("\r\nSorry that item is unavailable, returning to purchase menu: ");
+						}else{
+							//dispenses item, adjusts inventory and balances, then logs
+							System.out.println("\r\nItem purchased, dispensing " + inventory.getSnacks().get(transaction.getTempkey()).getName() + ": " + inventory.getSnacks().get(transaction.getTempkey()).getMessage() + System.lineSeparator());
+							purchaseMenu.removeBalance(inventory.getSnacks().get(transaction.getTempkey()).getPrice());
+							inventory.getSnacks().get(transaction.getTempkey()).getInventoryTakeAway(true);
+							VMLog.logTransactions(inventory.getSnacks().get(transaction.getTempkey()).getName() + " " + inventory.getSnacks().get(transaction.getTempkey()).getSnackType() + " $" + purchaseMenu.getPrevBalance() + " $" + purchaseMenu.getBalance());
+						}
+						} else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 							purchaseMenu.returnChange();
 							purchaseMenu.feedMoney();
-						}else if (choice.equals(MAIN_MENU_EXIT)) {
+						} else if (choice.equals(MAIN_MENU_EXIT)) {
 							System.out.println("Thank you, please come again.");
 							System.exit(0);
-						}
-
-				} else if (choice.equals(MAIN_MENU_EXIT)) {
+					} else if (choice.equals(MAIN_MENU_EXIT)) {
 						System.out.println("Thank you, please come again.");
+					}
 				}
+
 			}
-
-		}
-
-		public static void main (String[]args){
-			Menu menu = new Menu(System.in, System.out);
-			PurchaseMenu purchaseMenu = new PurchaseMenu(System.in, System.out);
-			Transaction transaction = new Transaction();
-			Inventory inventory = new Inventory();
-
-			VendingMachineCLI cli = new VendingMachineCLI(menu, inventory, purchaseMenu, transaction);
-			cli.run();
 		}
 	}
+}

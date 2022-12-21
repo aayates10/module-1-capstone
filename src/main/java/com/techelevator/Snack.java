@@ -45,9 +45,9 @@ public class Snack {
         return message;
     }
 
-    public int InventoryTakeAway(boolean available ){
+    public int getInventoryTakeAway(boolean available ){
         if (available == true && qty > 0){
-             this.qty = getQty()-1;
+            this.qty = getQty()-1;
         }
         return this.qty;
     }
