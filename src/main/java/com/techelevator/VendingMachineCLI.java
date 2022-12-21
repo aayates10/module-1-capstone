@@ -97,7 +97,8 @@ public class VendingMachineCLI {
 						 */
 						} else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 							menu.returnChange();
-							menu.feedMoney();
+							VMLog.logTransactions("CHANGE RETURNED: $" + menu.getNonpreBalance() + "$" + menu.getBalance());
+							break;
 						/*If the user selects the "Exit" option
 						from the main menu, the program terminates.
 						 */

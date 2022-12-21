@@ -57,63 +57,29 @@ public class Snack {
         return this.qty;
     }
 
-    /*returns a string indicating whether the snack is
-    sold out or not.
-     */
-    public String soldOut() {
-        int shelfSnack = getQty();
-        String shelvedInventory;
-        if (shelfSnack == 0) {
-            shelvedInventory = "SOLD OUT";
-        } else {
-            shelvedInventory = "AVAILIBLE";
-        }
-        return shelvedInventory;
-    }
-
-
-    /*decrements the quantity of the snack by 1*/
-    public void updateQty() {
-        qty -= 1;
-    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getSlotID() {
         return slotID;
-    }
-
-    public void setSlotID(String slotID) {
-        this.slotID = slotID;
     }
 
     public String getSnackType() {
         return snackType;
     }
 
-    public void setSnackType(String snackType) {
-        this.snackType = snackType;
-    }
+
 
     public int getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
+
+
 }
