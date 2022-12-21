@@ -1,7 +1,6 @@
 package com.techelevator;
 
 import com.techelevator.view.Menu;
-import com.techelevator.view.PurchaseMenu;
 
 public class VendingMachineCLI {
 	/*has a main method that creates instances of the Menu and
@@ -10,10 +9,9 @@ public class VendingMachineCLI {
 	VendingMachineCLI.*/
 	public static void main (String[]args){
 		Menu menu = new Menu(System.in, System.out);
-		PurchaseMenu purchaseMenu = new PurchaseMenu(System.in, System.out);
 		Transaction transaction = new Transaction();
 		Inventory inventory = new Inventory();
-		VendingMachineCLI cli = new VendingMachineCLI(menu, inventory, purchaseMenu, transaction);
+		VendingMachineCLI cli = new VendingMachineCLI(menu, inventory, transaction);
 		cli.run();
 	}
 
@@ -32,14 +30,13 @@ public class VendingMachineCLI {
 
 	//CLI Variables
 	private Menu menu;
-	private PurchaseMenu purchaseMenu;
+
 	private Transaction transaction;
 
 
-	public VendingMachineCLI(Menu menu, Inventory inventory, PurchaseMenu purchaseMenu, Transaction transaction) {
+	public VendingMachineCLI(Menu menu, Inventory inventory,  Transaction transaction) {
 		this.inventory = inventory;
 		this.menu = menu;
-		this.purchaseMenu = purchaseMenu;
 		this.transaction = transaction;
 
 	}
@@ -66,9 +63,9 @@ public class VendingMachineCLI {
 					the program updates the balance and logs the
 					transaction.*/
 					if (nextChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
-						purchaseMenu.feedMoney();
+						menu.feedMoney();
 						// feed money method, updates balance, logs
-						VMLog.logTransactions("FEED MONEY: $" +purchaseMenu.getNonpreBalance() +" $"+ purchaseMenu.getPrevBalance());
+						VMLog.logTransactions("FEED MONEY: $" +menu.getNonpreBalance() +" $"+ menu.getPrevBalance());
 
 						/*f the user selects the "Select Product" option, the program
 						gets the user's input for which product they want to purchase
@@ -90,17 +87,17 @@ public class VendingMachineCLI {
 						}else{
 							//dispenses item, adjusts inventory and balances, then logs
 							System.out.println("\r\nItem purchased, dispensing " + inventory.getSnacks().get(transaction.getTempkey()).getName() + ": " + inventory.getSnacks().get(transaction.getTempkey()).getMessage() + System.lineSeparator());
-							purchaseMenu.removeBalance(inventory.getSnacks().get(transaction.getTempkey()).getPrice());
+							menu.removeBalance(inventory.getSnacks().get(transaction.getTempkey()).getPrice());
 							inventory.getSnacks().get(transaction.getTempkey()).getInventoryTakeAway(true);
-							VMLog.logTransactions(inventory.getSnacks().get(transaction.getTempkey()).getName() + " " + inventory.getSnacks().get(transaction.getTempkey()).getSnackType() + " $" + purchaseMenu.getNonpreBalance() + " $" + purchaseMenu.getPrevBalance());
+							VMLog.logTransactions(inventory.getSnacks().get(transaction.getTempkey()).getName() + " " + inventory.getSnacks().get(transaction.getTempkey()).getSnackType() + " $" + menu.getNonpreBalance() + " $" + menu.getPrevBalance());
 						}
 						/*If the user selects the "Finish Transaction"
 						option, the program returns the user's
 						remaining balance and logs the transaction.
 						 */
 						} else if (nextChoice.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
-							purchaseMenu.returnChange();
-							purchaseMenu.feedMoney();
+							menu.returnChange();
+							menu.feedMoney();
 						/*If the user selects the "Exit" option
 						from the main menu, the program terminates.
 						 */
