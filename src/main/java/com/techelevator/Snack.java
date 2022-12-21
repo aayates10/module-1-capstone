@@ -25,12 +25,6 @@ public class Snack {
         this.snackType = snackType;
     }
 
-    /*converts the price of the snack to pennies.*/
-    public int PriceInPennies() {
-        // Convert price of snacks to pennies, so all math can be done as ints for the sake of precision.
-        return (int) (price * 100);
-    }
-
     @Override
     /*returns a string representation of the snack*/
     public String toString() {
